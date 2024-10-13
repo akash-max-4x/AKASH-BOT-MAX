@@ -129,49 +129,6 @@ try {
   return logger.loader(`can't deploy ${chalk.blueBright('AKASH')} file`, "error")
 }
 
-var approvedListsValue;
-try {
-  global.client.approvedListsPath = join(global.client.mainPath, "../botdata/approvedlists.json");
-  approvedListsValue = require(global.client.approvedListsPath);
-  if (config.approval) {
-  logger.loader(`deploying ${chalk.blueBright(`approved database`)}`);
-  } else {
-    logger(`${chalk.blueBright(`approval`)} system is turned off`, 'warn');
-  }
-} catch (e) {
-  return logger(`can't read approved database`, 'error');
-}
-try {
-  for (const approvedListsKeys in approvedListsValue) global.approved[approvedListsKeys] = approvedListsValue[approvedListsKeys];
-  if (config.approval) {
-    logger.loader(`deployed ${chalk.blueBright(`approved database`)}`)
-  }
-} catch (e) {
-  return logger(`can't deploy approved groups database`, 'error')
-}
-
-var premiumListsValue;
-try {
-  global.client.premiumListsPath = join(global.client.mainPath, "../botdata/premiumlists.json");
-  premiumListsValue = require(global.client.premiumListsPath);
-  if (config.premium) {
-  logger.loader(`deploying ${chalk.blueBright(`premium database`)}`);
-  } else {
-    logger(`${chalk.blueBright(`premium`)} system is turned off`, 'warn');
-  }
-} catch (e) {
-  return logger(`can't read premium database`, 'error')
-}
-try {
-  for (const premiumLists in premiumListsValue) global.premium[premiumLists] = premiumListsValue[premiumLists];
-  if (config.premium) {
-    logger.loader(`deployed ${chalk.blueBright(`premium database`)}`);
-  }
-} catch (e) {
-  return logger(`can't deploy premium database`, 'error');
-}
-
-
 const { Sequelize, sequelize } = require("../system/database/index.js");
 for (const property in listPackage) {
   try {
