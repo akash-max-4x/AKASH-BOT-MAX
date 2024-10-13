@@ -13,25 +13,10 @@ const lang = "bn";
 
 module.exports.config = {
   name: "bot",
-  version: "1.0.0",
-  credits: "AKASH",
-  permission: 0,
-  description: "talk with bot",
-  category: "user",
-  usages: "",
-  prefix: false,
-  premium: true, 
-  cooldown: 5,
-  dependencies: {
-    "": ""
-  }
-}
-
-module.exports.config = {
-  name: "bot",
   version: "0.0.4",
   permission: 0,
   prefix: false,
+  premium: true, 
   credits: "nayan",
   description: "talk with bot",
   category: "user",
