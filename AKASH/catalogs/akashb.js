@@ -129,6 +129,49 @@ try {
   return logger.loader(`can't deploy ${chalk.blueBright('AKASH')} file`, "error")
 }
 
+var approvedListsValue;
+try {
+  global.client.approvedListsPath = join(global.client.mainPath, "../botdata/approvedlists.json");
+  approvedListsValue = require(global.client.approvedListsPath);
+  if (config.approval) {
+  logger.loader(`deploying ${chalk.blueBright(`approved database`)}`);
+  } else {
+    logger(`${chalk.blueBright(`approval`)} system is turned off`, 'warn');
+  }
+} catch (e) {
+  return logger(`can't read approved database`, 'error');
+}
+try {
+  for (const approvedListsKeys in approvedListsValue) global.approved[approvedListsKeys] = approvedListsValue[approvedListsKeys];
+  if (config.approval) {
+    logger.loader(`deployed ${chalk.blueBright(`approved database`)}`)
+  }
+} catch (e) {
+  return logger(`can't deploy approved groups database`, 'error')
+}
+
+var premiumListsValue;
+try {
+  global.client.premiumListsPath = join(global.client.mainPath, "../botdata/premiumlists.json");
+  premiumListsValue = require(global.client.premiumListsPath);
+  if (config.premium) {
+  logger.loader(`deploying ${chalk.blueBright(`premium database`)}`);
+  } else {
+    logger(`${chalk.blueBright(`premium`)} system is turned off`, 'warn');
+  }
+} catch (e) {
+  return logger(`can't read premium database`, 'error')
+}
+try {
+  for (const premiumLists in premiumListsValue) global.premium[premiumLists] = premiumListsValue[premiumLists];
+  if (config.premium) {
+    logger.loader(`deployed ${chalk.blueBright(`premium database`)}`);
+  }
+} catch (e) {
+  return logger(`can't deploy premium database`, 'error');
+}
+
+
 const { Sequelize, sequelize } = require("../system/database/index.js");
 for (const property in listPackage) {
   try {
@@ -393,3 +436,18 @@ function onBot({ models: botModel }) {
     });
   });
 }
+(async () => {
+  try {
+    await sequelize.authenticate();
+    const authentication = {};
+    const chalk = require('chalk');
+    authentication.Sequelize = Sequelize;
+    authentication.sequelize = sequelize;
+    const models = require('../system/database/model.js')(authentication);
+    logger(`deployed ${chalk.blueBright('database')} system`, "• AKASH DATABASE   •");
+    logger(`deploying ${chalk.blueBright('login')} system`, "• AKASH LOGIN 	    •")
+    const botData = {};
+    botData.models = models;
+    onBot(botData);
+  } catch (error) { logger(`can't deploy ${chalk.blueBright('database')} system`, "• AKASH FAILED    •") }
+})();
