@@ -25,6 +25,7 @@ module.exports.handleEvent = async ({ event, api, Threads }) => {
     let str = i[0].toUpperCase() + i.slice(1);
     if (body === i.toUpperCase() | body === i | str === body) {
 		const prefix = threadSetting.PREFIX || global.config.PREFIX;
+	        var link = ["https://i.postimg.cc/fTCfWqXM/Photoroom-20240914-090224.png"];
       if (config.PREFIX == null) {
         return out(`Robot Prefix : ${global.config.PREFIX} \nADMIN AKASH HASAN`)
       }
