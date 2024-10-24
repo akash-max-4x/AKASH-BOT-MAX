@@ -18,6 +18,10 @@
     "",
     ""
   ],
+  "OWNER": ["100071539569680"], 
+  "APPROVED": [],
+  "disabledcmds": [
+  ],
   "disabledevents": [],
   "note": "make sure that the bot name you entered is all lowercase",
   "notice": " dont cng auther name and owner uid. otherwise bot not working"
