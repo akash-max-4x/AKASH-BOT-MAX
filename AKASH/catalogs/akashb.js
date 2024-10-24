@@ -216,7 +216,7 @@ try {
   if (!global.config.PREFIX) {
     logger.error(`please enter your bot prefix in ${chalk.blueBright('Akash.json')} file`)
   }
-  if (global.config.author != "Akash") {
+  if (global.config.author != "AKASH") {
     logger.error(`detected : author was changed at ${chalk.blueBright('Akash.json')}`);
     process.exit(0);
   }
