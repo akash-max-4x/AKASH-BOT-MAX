@@ -32,23 +32,23 @@ global.client = new Object({
   getTime: function(option) {
     switch (option) {
       case "seconds":
-        return `${moment.tz("Asia/Manila").format("ss")}`;
+        return `${moment.tz("Asia/Dhaka").format("ss")}`;
       case "minutes":
-        return `${moment.tz("Asia/Manila").format("mm")}`;
+        return `${moment.tz("Asia/Dhaka").format("mm")}`;
       case "hours":
-        return `${moment.tz("Asia/Manila").format("HH")}`;
+        return `${moment.tz("Asia/Dhaka").format("HH")}`;
       case "date":
-        return `${moment.tz("Asia/Manila").format("DD")}`;
+        return `${moment.tz("Asia/Dhaka").format("DD")}`;
       case "month":
-        return `${moment.tz("Asia/Manila").format("MM")}`;
+        return `${moment.tz("Asia/Dhaka").format("MM")}`;
       case "year":
-        return `${moment.tz("Asia/Manila").format("YYYY")}`;
+        return `${moment.tz("Asia/Dhaka").format("YYYY")}`;
       case "fullHour":
-        return `${moment.tz("Asia/Manila").format("HH:mm:ss")}`;
+        return `${moment.tz("Asia/Dhaka").format("HH:mm:ss")}`;
       case "fullYear":
-        return `${moment.tz("Asia/Manila").format("DD/MM/YYYY")}`;
+        return `${moment.tz("Asia/Dhaka").format("DD/MM/YYYY")}`;
       case "fullTime":
-        return `${moment.tz("Asia/Manila").format("HH:mm:ss DD/MM/YYYY")}`;
+        return `${moment.tz("Asia/Dhaka").format("HH:mm:ss DD/MM/YYYY")}`;
     }
   },
   timeStart: Date.now()
@@ -216,7 +216,7 @@ try {
   if (!global.config.PREFIX) {
     logger.error(`please enter your bot prefix in ${chalk.blueBright('Akash.json')} file`)
   }
-  if (global.config.author != "AKASH") {
+  if (global.config.author != "Akash") {
     logger.error(`detected : author was changed at ${chalk.blueBright('Akash.json')}`);
     process.exit(0);
   }
@@ -418,7 +418,7 @@ function onBot({ models: botModel }) {
 
         }
       })();
-    console.log(chalk.blue(`\n` + `• AKASH DEPLOYING AKASH-BOT DATA •`));
+    console.log(chalk.blue(`\n` + `• AKASH BOT MAX DATA •`));
     global.loading(`${crayon(``)}deployed ${chalk.blueBright(`${global.client.commands.size}`)} commands and ${chalk.blueBright(`${global.client.events.size}`)} events`, "• AKASH DATA •");
     global.loading(`${crayon(``)}deployed time : ${chalk.blueBright(((Date.now() - global.client.timeStart) / 1000).toFixed() + 's')}`, "• AKASH DATA •");
     const listenerData = {};
@@ -449,5 +449,5 @@ function onBot({ models: botModel }) {
     const botData = {};
     botData.models = models;
     onBot(botData);
-  } catch (error) { logger(`can't deploy ${chalk.blueBright('database')} system`, "• AKASH FAILED    •") }
+  } catch (error) { logger(`can't deploy ${chalk.blueBright('database')} system`, "•AKASH FAILED    •") }
 })();
